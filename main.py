@@ -2,9 +2,12 @@
 import random
 import time
 
+#=======================================================================
+
 game = True
 end_turn = True
 jail = False
+
 doubles = 0
 position = 0
 posCounter = 0
@@ -12,9 +15,14 @@ actionKey = ''
 dice1 = 0
 dice2 = 0
 rolled_total = 0
-players = []
 chosen_chances = []
 chosen_chests = []
+
+players = []
+#Bank
+bank={'houses':32,'hotels':12}
+
+#===== Custom Funcitons ===============================================
 
 #--delay function--
 def delayer():
@@ -57,6 +65,25 @@ def random_chests():
         while the_choice not in chosen_chests:
             chosen_chests.append(the_choice)
 
+#defining the cost per house
+'''def house_price(landColor):
+    if landColor == 'brown' or landColor == 'l blue':
+        bhouse_price = 50
+    elif landColor == 'pink' or landColor == 'orange':
+        bhouse_price = 100
+    elif landColor == '''
+
+#=======================================================================
+
+#Get slots details
+slots = open('slots.txt', 'r')
+slots_list = slots.readlines()
+slots.close()
+#removing the '\n' from the list
+slots_list = [s.rstrip() for s in slots_list]
+
+#=======================================================================
+
 # creating player profiles
 noOfPlayers = int(input('Enter the number of players... '))
 for player in range(1, (noOfPlayers+1)):
@@ -64,7 +91,9 @@ for player in range(1, (noOfPlayers+1)):
     players.append(playername)
     globals()[playername] = {'position': 0,'balance': 1500, 'ownedProperties': [],'doubles':0,'jail':False,'jailKeys':0}
 
-print('Welcome to monopoly.\n the Game has started')
+print('Welcome to Pyonopoly.\n the Game has started')
+
+#=======================================================================
 
 while end_turn:
 
@@ -104,198 +133,21 @@ while end_turn:
             
             position = posCounter
 
-            # Slots in positions
-            if position == 1:
-                slotType = 'Property'
-                landColor = 'brown'
-                value = 60
-                deed = {'name':'Old Kent Road','rent':2,}
+ #=======================================================================     
+      
+            # defining the slots according to the positions
+            current_property = slots_list[position-1]
+            property_details = current_property.split(',')
 
-            if position == 2:
-                slotType = 'Community Chest'
+            unbuyable = [0,2,4,7,10,17,20,22,30,33,36,38,40]
 
-            if position == 3:
-                slotType = 'Property'
-                landColor = 'brown'
-                value = 60
-                deed = {'name':'Whitechapel Road','rent':}
+            slotType = property_details[1]
+            if position not in unbuyable:
+                name = property_details[2]
+                rent = int(property_details[3])
+                mortgage = int(property_details[4])
 
-            if position == 4:
-                slotType = 'Tax'
-
-            if position == 5:
-                slotType = 'Railroad'
-                value = 200
-
-            if position == 6:
-                slotType = 'Property'
-                landColor = 'l blue'
-                value = 100
-                deed = {'name':'The Angel Islington','rent':}
-
-            if position == 7:
-                slotType = 'Chance'
-
-            if position == 8:
-                slotType = 'Property'
-                landColor = 'l blue'
-                value = 100
-                deed = {'name': 'Euton Road', 'rent':}
-
-            if position == 9:
-                slotType = 'Property'
-                landColor = 'l blue'
-                value = 120
-                deed = {'name': 'Pentonville Road', 'rent':}
-
-            if position == 10:
-                slotType = 'Just Visiting Jail '
-
-            if position == 11:
-                slotType = 'Property'
-                landColor = 'purple'
-                value = 140
-                deed = {'name':'Pall Mall','rent':}
-
-            if position == 12:
-                slotType = 'Eleectricity Board'
-                value = 150
-
-            if position == 13:
-                slotType = 'Property'
-                landColor = 'purple'
-                value = 140
-                deed = {'name':'Whitehall','rent':}
-
-            if position == 14:
-                slotType = 'Property'
-                landColor = 'purple'
-                value = 160
-                deed = {'name':'Northumberland Avenue','rent':}
-
-            if position == 15:
-                slotType = 'Railroad'
-                value = 200
-
-            if position == 16:
-                slotType = 'Property'
-                landColor = 'orange'
-                value = 180
-                deed = {'name':'Bow Street','rent':}
-
-            if position == 17:
-                slotType = 'Community Chest'
-
-            if position == 18:
-                slotType = 'Property'
-                landColor = 'orange'
-                value = 180
-                deed = {'name':'Malborough Street','rent':}
-
-            if position == 19:
-                slotType = 'Property'
-                landColor = 'orange'
-                value = 200
-                deed = {'name':'Vine Street','rent':}
-
-            if position == 20:
-                slotType = 'Free Parking'
-
-            if position == 21:
-                slotType = 'Property'
-                landColor = 'red'
-                value = 220
-                deed = {'name':'Strand','rent':}
-
-            if position == 22:
-                slotType = 'Chance'
-
-            if position == 23:
-                slotType = 'Property'
-                landColor = 'red'
-                value = 220
-                deed = {'name':'Fleet Street','rent':}
-
-            if position == 24:
-                slotType = 'Property'
-                landColor = 'red'
-                value = 240
-                deed = {'name':'Trafalgar Square','rent':}
-
-            if position == 25:
-                slotType = 'Railroad'
-                value = 200
-
-            if position == 26:
-                slotType = 'Property'
-                landColor = 'yellow'
-                value = 260
-                deed = {'name':'Leicester Square','rent':}
-
-            if position == 27:
-                slotType = 'Property'
-                landColor = 'yellow'
-                value = 260
-                deed = {'name':'Conventry Street','rent':}
-
-            if position == 28:
-                slotType = 'Water Works'
-                value = 150
-
-            if position == 29:
-                slotType = 'Property'
-                landColor = 'yellow'
-                value = 280
-                deed = {'name':'Piccadilly','rent':}
-
-            if position == 30:
-                slotType = 'Go to Jail'
-
-            if position == 31:
-                slotType = 'Property'
-                landColor = 'green'
-                value = 300
-                deed = {'name':'Regent Street','rent':}
-
-            if position == 32:
-                slotType = 'Property'
-                landColor = 'green'
-                value = 300
-                deed = {'name':'Oxford Street','rent':}
-
-            if position == 33:
-                slotType = 'Community Chest'
-
-            if position == 34:
-                slotType = 'Property'
-                landColor = 'green'
-                value = 320
-                deed = {'name':'Bond Street','rent':}
-
-            if position == 35:
-                slotType = 'Railroad'
-                value = 200
-
-            if position == 36:
-                slotType = 'Chance'
-
-            if position == 37:
-                slotType = 'Property'
-                landColor = 'd blue'
-                value = 350
-                deed = {'name':'Park Lane','rent':}
-
-            if position == 38:
-                slotType = 'Tax'
-
-            if position == 39:
-                slotType = 'Property'
-                landColor = 'd blue'
-                value = 400
-                deed = {'name':'Mayfair','rent':}
-
-            if position == 40:
-                slotType = 'Go'
+#========================================================================
 
             # showing details of the landed slot and calling actions
             print('You landed on the slot', position)
@@ -358,7 +210,9 @@ while end_turn:
                 if slotType == 'Go to Jail':
                     jail = True
                     break
-                
+
+#========================================================================
+
             #------if a player rolls a double---------
             #shifting players no of doubles
             doubles = current_player['doubles']
@@ -374,6 +228,8 @@ while end_turn:
                 print('You landed 3 doubles in a row') 
 
             current_player['doubles'] = doubles
+
+#========================================================================
 
         #-----send to jail--------
         if jail:
