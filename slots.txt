@@ -1,0 +1,41 @@
+1,Property,Old Kent Road,2,50
+2,Community Chest
+3,Property,Whitechapel Road,4,50
+4,Tax,Income Tax
+5,Railroad,King's Cross Station,25,100
+6,Property,The Angel Islington,6,50
+7,Chance
+8,Property,Euston Road,6,6
+9,Property,Pentonville Road,8,60
+10,Just Visiting Jail
+11,Property,Pall Mall,10,70
+12,Utility,Electricity Company,4,75
+13,Property,Whitehall,10,70
+14,Property,Northumberland Avenue,12,80
+15,Railroad,Marylebone Station,25,100
+16,Property,Bow Street,14,90
+17,Community Chest
+18,Property,Malborough Street,14,90
+19,Property,Vine Street,16,100
+20,Free Parking
+21,Property,Strand,18,110
+22,Chance
+23,Property,Fleet Street,18,110
+24,Property,Trafalgar Square,20,120
+25,Railroad,Fenchurch Street Station,25,100
+26,Property,Leicester Square,22,150
+27,Property,Conventry Street,22,150
+28,Utility,Water Works,4,75
+29,Property,Piccadilly,22,150
+30,Go to Jail
+31,Property,Regent Street,26,200
+32,Property,Oxford Street,26,200
+33,Community Chest
+34,Property,Bond Street,28,200
+35,Railroad,Liverpool Station,25,100
+36,Chance
+37,Property,Park Lane,35,175
+38,Tax,Super Tax
+39,Property,Mayfair,50,200
+40,Go
+
